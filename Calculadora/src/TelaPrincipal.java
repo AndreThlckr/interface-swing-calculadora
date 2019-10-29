@@ -15,76 +15,28 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class TelaPrincipal {
+
+	private static JTextField txtVisor;
+	public static boolean isResultado = false;
+	public static Calculator calculadora = new Calculator();
 	
-	private JTextField txtVisor;
-	private JLabel lblNewLabel;
-	private JButton btnDivisao;
-	private JButton btnVezes;
-	private JButton btn_9;
-	private JButton btn_8;
-	private JButton btn_7;
-	private JButton btn_4;
-	private JButton btn_5;
-	private JButton btn_6;
-	private JButton btnMenos;
-	private JButton btn_1;
-	private JButton btn_2;
-	private JButton btn_3;
-	private JButton btnMais;
+	private TeclaCalculadora btn_0;
+	private TeclaCalculadora btn_1;
+	private TeclaCalculadora btn_2;
+	private TeclaCalculadora btn_3;
+	private TeclaCalculadora btn_4;
+	private TeclaCalculadora btn_5;
+	private TeclaCalculadora btn_6;
+	private TeclaCalculadora btn_7;
+	private TeclaCalculadora btn_8;
+	private TeclaCalculadora btn_9;
+	private TeclaCalculadora btnVirgula;
+	private TeclaCalculadora btnDivisao;
+	private TeclaCalculadora btnVezes;
+	private TeclaCalculadora btnMenos;
+	private TeclaCalculadora btnMais;
+
 	private JButton btnIgual;
-	private JButton btn_0;
-
-	private boolean isCompleto;
-	private boolean isResultado;
-	private int operacao;
-
-	private ArrayList<Integer> operacoes = new ArrayList<Integer>();
-	private ArrayList<Double> valores = new ArrayList<Double>();
-
-	public class ClickNumero implements MouseListener {
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			String visor = txtVisor.getText();
-			String digito = ((JButton) e.getSource()).getText();
-			
-			if (visor.equalsIgnoreCase("0") && !digito.equalsIgnoreCase(",")) {
-					txtVisor.setText(digito);
-			} else {
-				txtVisor.setText(visor + digito);
-			}
-			
-			visor = visor.replaceAll(",",".");
-			System.out.println(Double.parseDouble(visor) + 1);
-			
-
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
 
 	private JFrame frame;
 
@@ -117,92 +69,7 @@ public class TelaPrincipal {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 321, 487);
-		frame.setLayout(null);
-
-		btn_0 = new JButton("0");
-		btn_0.addMouseListener(new ClickNumero());
-		btn_0.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_0.setBounds(80, 377, 60, 60);
-		frame.add(btn_0);
-
-		btn_1 = new JButton("1");
-		btn_1.addMouseListener(new ClickNumero());
-		btn_1.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_1.setBounds(10, 306, 60, 60);
-		frame.add(btn_1);
-
-		btn_2 = new JButton("2");
-		btn_2.addMouseListener(new ClickNumero());
-		btn_2.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_2.setBounds(80, 306, 60, 60);
-		frame.add(btn_2);
-
-		btn_3 = new JButton("3");
-		btn_3.addMouseListener(new ClickNumero());
-		btn_3.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_3.setBounds(150, 306, 60, 60);
-		frame.add(btn_3);
-
-		btn_4 = new JButton("4");
-		btn_4.addMouseListener(new ClickNumero());
-		btn_4.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_4.setBounds(10, 235, 60, 60);
-		frame.add(btn_4);
-
-		btn_5 = new JButton("5");
-		btn_5.addMouseListener(new ClickNumero());
-		btn_5.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_5.setBounds(80, 235, 60, 60);
-		frame.add(btn_5);
-
-		btn_6 = new JButton("6");
-		btn_6.addMouseListener(new ClickNumero());
-		btn_6.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_6.setBounds(150, 235, 60, 60);
-		frame.add(btn_6);
-
-		btn_7 = new JButton("7");
-		btn_7.addMouseListener(new ClickNumero());
-		btn_7.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_7.setBounds(10, 164, 60, 60);
-		frame.add(btn_7);
-
-		btn_8 = new JButton("8");
-		btn_8.addMouseListener(new ClickNumero());
-		btn_8.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_8.setBounds(80, 164, 60, 60);
-		frame.add(btn_8);
-
-		btn_9 = new JButton("9");
-		btn_9.addMouseListener(new ClickNumero());
-		btn_9.setFont(new Font("Verdana", Font.BOLD, 13));
-		btn_9.setBounds(150, 164, 60, 60);
-		frame.add(btn_9);
-
-		btnMais = new JButton("+");
-		btnMais.setFont(new Font("Verdana", Font.BOLD, 13));
-		btnMais.setBounds(236, 306, 60, 60);
-		frame.add(btnMais);
-
-		btnMenos = new JButton("-");
-		btnMenos.setFont(new Font("Verdana", Font.BOLD, 13));
-		btnMenos.setBounds(236, 235, 60, 60);
-		frame.add(btnMenos);
-
-		btnVezes = new JButton("X");
-		btnVezes.setFont(new Font("Verdana", Font.BOLD, 13));
-		btnVezes.setBounds(236, 164, 60, 60);
-		frame.add(btnVezes);
-
-		btnIgual = new JButton("=");
-		btnIgual.setFont(new Font("Verdana", Font.BOLD, 13));
-		btnIgual.setBounds(220, 377, 76, 60);
-		frame.add(btnIgual);
-
-		btnDivisao = new JButton("/");
-		btnDivisao.setFont(new Font("Verdana", Font.BOLD, 13));
-		btnDivisao.setBounds(236, 93, 60, 60);
-		frame.add(btnDivisao);
+		frame.getContentPane().setLayout(null);
 
 		txtVisor = new JTextField();
 		txtVisor.setFont(new Font("Verdana", Font.PLAIN, 20));
@@ -210,40 +77,162 @@ public class TelaPrincipal {
 		txtVisor.setText("0");
 		txtVisor.setEditable(false);
 		txtVisor.setBounds(10, 38, 286, 44);
-		frame.add(txtVisor);
+		frame.getContentPane().add(txtVisor);
 		txtVisor.setColumns(10);
 
-		lblNewLabel = new JLabel("2 + 2");
-		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(10, 5, 279, 26);
-		frame.add(lblNewLabel);
+		// BOTOES DE INPUT
+
+		btn_0 = new TeclaCalculadora("0", TeclaCalculadora.TECLA_INPUT);
+		btn_0.setBounds(80, 377, 60, 60);
+		frame.getContentPane().add(btn_0);
+
+		btn_1 = new TeclaCalculadora("1", TeclaCalculadora.TECLA_INPUT);
+		btn_1.setBounds(10, 306, 60, 60);
+		frame.getContentPane().add(btn_1);
+
+		btn_2 = new TeclaCalculadora("2", TeclaCalculadora.TECLA_INPUT);
+		btn_2.setBounds(80, 306, 60, 60);
+		frame.getContentPane().add(btn_2);
+
+		btn_3 = new TeclaCalculadora("3", TeclaCalculadora.TECLA_INPUT);
+		btn_3.setBounds(150, 306, 60, 60);
+		frame.getContentPane().add(btn_3);
+
+		btn_4 = new TeclaCalculadora("4", TeclaCalculadora.TECLA_INPUT);
+		btn_4.setBounds(10, 235, 60, 60);
+		frame.getContentPane().add(btn_4);
+
+		btn_5 = new TeclaCalculadora("5", TeclaCalculadora.TECLA_INPUT);
+		btn_5.setBounds(80, 235, 60, 60);
+		frame.getContentPane().add(btn_5);
+
+		btn_6 = new TeclaCalculadora("6", TeclaCalculadora.TECLA_INPUT);
+		btn_6.setBounds(150, 235, 60, 60);
+		frame.getContentPane().add(btn_6);
+
+		btn_7 = new TeclaCalculadora("7", TeclaCalculadora.TECLA_INPUT);
+		btn_7.setBounds(10, 164, 60, 60);
+		frame.getContentPane().add(btn_7);
+
+		btn_8 = new TeclaCalculadora("8", TeclaCalculadora.TECLA_INPUT);
+		btn_8.setBounds(80, 164, 60, 60);
+		frame.getContentPane().add(btn_8);
+
+		btn_9 = new TeclaCalculadora("9", TeclaCalculadora.TECLA_INPUT);
+		btn_9.setBounds(150, 164, 60, 60);
+		frame.getContentPane().add(btn_9);
+
+		btnVirgula = new TeclaCalculadora(",", TeclaCalculadora.TECLA_INPUT);
+		btnVirgula.setBounds(150, 377, 60, 60);
+		frame.getContentPane().add(btnVirgula);
+
+		// BOTOES DE OPERACAO
+
+		btnMais = new TeclaCalculadora("+", TeclaCalculadora.TECLA_OPERACAO);
+		btnMais.setBounds(236, 306, 60, 60);
+		frame.getContentPane().add(btnMais);
+
+		btnMenos = new TeclaCalculadora("-", TeclaCalculadora.TECLA_OPERACAO);
+		btnMenos.setBounds(236, 235, 60, 60);
+		frame.getContentPane().add(btnMenos);
+
+		btnVezes = new TeclaCalculadora("X", TeclaCalculadora.TECLA_OPERACAO);
+		btnVezes.setBounds(236, 164, 60, 60);
+		frame.getContentPane().add(btnVezes);
+
+		btnDivisao = new TeclaCalculadora("/", TeclaCalculadora.TECLA_OPERACAO);
+		btnDivisao.setBounds(236, 93, 60, 60);
+		frame.getContentPane().add(btnDivisao);
+
+
+		// BOTOES ESPECIAIS
 
 		JButton btnDrag = new JButton("<=");
 		btnDrag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				drag();
 			}
 		});
 		btnDrag.setFont(new Font("Verdana", Font.BOLD, 13));
 		btnDrag.setBounds(150, 93, 60, 60);
-		frame.add(btnDrag);
+		frame.getContentPane().add(btnDrag);
 
 		JButton btnClean = new JButton("C");
+		btnClean.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpaVisor();
+			}
+		});
 		btnClean.setFont(new Font("Verdana", Font.BOLD, 13));
 		btnClean.setBounds(80, 93, 60, 60);
-		frame.add(btnClean);
+		frame.getContentPane().add(btnClean);
 
 		JButton btnInverteSinal = new JButton("+-");
+		btnInverteSinal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inverteSinal();
+			}
+		});
 		btnInverteSinal.setFont(new Font("Verdana", Font.BOLD, 13));
 		btnInverteSinal.setBounds(10, 377, 60, 60);
-		frame.add(btnInverteSinal);
+		frame.getContentPane().add(btnInverteSinal);
 
-		JButton btnVirgula = new JButton(",");
-		btnVirgula.addMouseListener(new ClickNumero());
-		btnVirgula.setFont(new Font("Verdana", Font.BOLD, 13));
-		btnVirgula.setBounds(150, 377, 60, 60);
-		frame.add(btnVirgula);
+		btnIgual = new JButton("=");
+		btnIgual.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getResultado();
+				isResultado = true;
+			}
+		});
+		btnIgual.setFont(new Font("Verdana", Font.BOLD, 13));
+		btnIgual.setBounds(220, 377, 76, 60);
+		frame.getContentPane().add(btnIgual);
 	}
 
+	public static String getTxtVisorText() {
+		return txtVisor.getText();
+	}
+
+	public static void setTxtVisorText(String text) {
+		txtVisor.setText(text);
+	}
+
+	private void limpaVisor() {
+		txtVisor.setText("0");
+	}
+
+	private void drag() {
+		String textoVisor = txtVisor.getText();
+		if (textoVisor.length() > 1) {
+			textoVisor = textoVisor.substring(0, textoVisor.length() - 1);
+		} else {
+			limpaVisor();
+			return;
+		}
+
+		txtVisor.setText(textoVisor);
+	}
+
+	private void inverteSinal() {
+		String textoVisor = txtVisor.getText();
+		double valor = Double.valueOf(textoVisor.replaceAll(",", "."));
+		if (valor > 0) {
+			txtVisor.setText("-" + textoVisor);
+		}
+		
+		if(valor < 0) {
+			txtVisor.setText(textoVisor.substring(1, textoVisor.length()));
+		}
+	}
+	
+	public void getResultado() {
+		if(calculadora.isPrimeiroValorEntered()) {
+			calculadora.setSegundoValor(Double.valueOf(txtVisor.getText().replaceAll(",", ".")));
+		} else {
+			calculadora.setPrimeiroValor(Double.valueOf(txtVisor.getText().replaceAll(",", ".")));
+		}
+		
+		txtVisor.setText(String.valueOf(calculadora.getResultado()));
+		calculadora.cleanMemory();
+	}
 }
