@@ -3,7 +3,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-public class NumberClick implements MouseListener {
+public class InputClick implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -15,7 +15,7 @@ public class NumberClick implements MouseListener {
 			if (!isVirgula) {
 				TelaPrincipal.setTxtVisorText(digito);
 			} else {
-				TelaPrincipal.setTxtVisorText(visor + digito);
+				TelaPrincipal.setTxtVisorText("0" + digito);
 			}
 			
 			TelaPrincipal.isResultado = false;

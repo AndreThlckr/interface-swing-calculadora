@@ -15,7 +15,7 @@ public class TeclaCalculadora extends JButton {
 		setFont(new Font("Verdana", Font.BOLD, 13));
 
 		if (funcao == TECLA_INPUT) {
-			addMouseListener(new NumberClick());
+			addMouseListener(new InputClick());
 		} else if (funcao == TECLA_OPERACAO) {
 			addMouseListener(new OperationClick());
 		}

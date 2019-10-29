@@ -232,7 +232,7 @@ public class TelaPrincipal {
 			calculadora.setPrimeiroValor(Double.valueOf(txtVisor.getText().replaceAll(",", ".")));
 		}
 		
-		txtVisor.setText(String.valueOf(calculadora.getResultado()));
+		txtVisor.setText(String.valueOf(calculadora.getResultado()).replaceAll("\\.", ","));
 		calculadora.cleanMemory();
 	}
 }
