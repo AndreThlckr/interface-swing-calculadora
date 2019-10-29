@@ -3,8 +3,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-
-//teste
 public class OperationClick implements MouseListener {
 
 	@Override
